@@ -46,7 +46,7 @@ app.post("/tweets", (req, res) => {
   const existingUser = users.find((u) => u.username === user);
 
   if(!existingUser){
-    res.status(409).send({message: "UNAUTHORIZED" });
+    res.status(400).send({message: "UNAUTHORIZED" });
     return;
   }
   if(!user) {
