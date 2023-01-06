@@ -42,9 +42,14 @@ app.post("/sign-up", (req, res) => {
 app.post("/tweets", (req, res) => {
   const { user } = req.headers;
   const { tweet } = req.body;
-  
+  const existingUser = users.find((u) => u.username === user);
+
+  if(!existingUser){
+    res.status(409).send({message: "UNAUTHORIZED" });
+    return;
+  }
   if(!user) {
-    res.status(400).send({ error: "UNHAUTORIZED" });
+    res.status(400).send({ error: "UNAUTHORIZED" });
     return;
   }
   if(!tweet) {
