@@ -42,6 +42,7 @@ app.post("/sign-up", (req, res) => {
 app.post("/tweets", (req, res) => {
   const { user } = req.headers;
   const { tweet } = req.body;
+
   const existingUser = users.find((u) => u.username === user);
 
   if(!existingUser){
@@ -56,6 +57,7 @@ app.post("/tweets", (req, res) => {
     res.sendStatus(400);
     return;
   }
+  
   tweetsSaved.push({username: user, tweet});
   res.status(201).send({message: "OK"})
 })
