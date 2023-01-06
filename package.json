@@ -2,9 +2,9 @@
   "name": "projeto12-tweteroo",
   "version": "1.0.0",
   "type": "module",
-  "main": "index.js", 
+  "main": "./src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./src/app.js"
   },
   "keywords": [],
   "author": "",
@@ -17,5 +17,13 @@
   "devDependencies": {
     "nodemon": "^2.0.20"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ana-lapas/tweteroo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ana-lapas/tweteroo/issues"
+  },
+  "homepage": "https://github.com/ana-lapas/tweteroo#readme",
   "description": ""
 }
