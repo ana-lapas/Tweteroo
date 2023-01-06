@@ -18,16 +18,7 @@ const users = [{
 	avatar: "https://images.pexels.com/photos/14200416/pexels-photo-14200416.jpeg?auto=compress&cs=tinysrgb&w=600" 
 }];
 
-const tweetsSaved = [{
-	username: "bobesponja",
-  tweet: "eu amo o hub"
-},{
-	username: "borboleta",
-  tweet: "My first tweet"
-},{
-	username: 'leao', 
-  tweet: "My first tweet"
-}];
+const tweetsSaved = [];
 
 app.post("/sign-up", (req, res) => {  
   const { username, avatar } = req.body;
@@ -51,9 +42,9 @@ app.post("/sign-up", (req, res) => {
 app.post("/tweets", (req, res) => {
   const { user } = req.headers;
   const { tweet } = req.body;
-
+  
   if(!user) {
-    res.status(401).send({ error: "UNHAUTORIZED" });
+    res.status(400).send({ error: "UNHAUTORIZED" });
     return;
   }
   if(!tweet) {
@@ -74,7 +65,13 @@ app.get("/tweets", (req, res) => {
     const { avatar } = users.find((user) => user.username === tweet.username);
     tweet.avatar = avatar;
   });
-
+  if(tweetsSaved.length === 0){
+    res.send(tweetsSaved)
+  }
+  if(tweetsSaved.length < 10) {
+    res.send(tweetsSaved.reverse()) 
+    return;
+  }
   res.send(tweetsSaved.slice(-10).reverse()) 
 });
 //
